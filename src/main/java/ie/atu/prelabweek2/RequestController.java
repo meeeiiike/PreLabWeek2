@@ -25,4 +25,12 @@ public class RequestController {
     public String details(@RequestParam String name, @RequestParam int age){
         return "Username: " + name + ", Age: " + age;
     }
+
+    // Returns JSON as opposed to strings like last methods.
+    // this endpoint/methods calls the person constructor passing the values
+    @GetMapping("/person")
+    public Person getPerson(){
+        return new Person("Meike", 23);
+    }
+
 }
