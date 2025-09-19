@@ -33,27 +33,11 @@ public class RequestController {
         return new Person("Meike", 23);
     }
 
+    // Returns JSON by creating Calculator object and calling calculator method and requesting the arguments
     @GetMapping("/calculate")
-    public String calculate(@RequestParam double num1, @RequestParam double num2, @RequestParam String operation) {
-
-        switch (operation) {
-            case "add":
-                double sumAdd = num1 + num2;
-                return "Total: " + sumAdd;
-            case "subtract":
-                double sumSub = num1 - num2;
-                return "Total: " + sumSub;
-            case "multiply":
-                double sumMultiply = num1 * num2;
-                return "Total: " + sumMultiply;
-            case "divide":
-                if (num2 == 0) {
-                    return "Division by zero";
-                } else {
-                    double sumDivide = num1 / num2;
-                    return "Total: " + sumDivide;
-                }
-        }
-        return operation;
+    public Calculator calculate(@RequestParam double num1, @RequestParam double num2, @RequestParam String operation) {
+        Calculator calculator = new Calculator(num1, num2, operation);
+        calculator.calculateTotal();
+        return calculator;
     }
 }
